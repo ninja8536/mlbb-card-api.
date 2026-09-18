@@ -1,0 +1,12 @@
+{
+  "name": "mlbb-api",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "express": "^4.19.2",
+    "form-data": "^4.0.0",
+    "puppeteer": "^22.6.0"
+  }
+}
