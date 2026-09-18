@@ -4,12 +4,13 @@ const axios = require('axios');
 const FormData = require('form-data');
 
 const app = express();
-app.use(express.text({ type: '*/*' }));
+app.use(express.json());
 app.post('/image', async (req, res) => {
   try {
-    const { html } = req.body;
-    if (!html) return res.status(400).json({ error: 'No HTML provided' });
-
+    app.post('/image', async (req, res) => {
+    try {
+        const { html } = req.body;
+        if (!html) return res.status(400).json({ error: "No HTML provided" });
     const browser = await puppeteer.launch({
       executablePath: process.env.PUPPETEER_EXECUTABLE_PATH,
       args: ['--no-sandbox', '--disable-setuid-sandbox']
