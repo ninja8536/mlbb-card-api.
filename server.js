@@ -4,8 +4,7 @@ const axios = require('axios');
 const FormData = require('form-data');
 
 const app = express();
-app.use(express.json());
-
+app.use(express.text({ type: '*/*' }));
 app.post('/image', async (req, res) => {
   try {
     const { html } = req.body;
