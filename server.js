@@ -24,10 +24,16 @@ app.post('/image', async (req, res) => {
         await browser.close();
 
         const form = new FormData();
-        form.append('image', imageBuffer.toString('base64'));
-        const imgbbRes = await axios.post(`https://api.imgbb.com/1/upload?key=${process.env.IMGBB_KEY}`, form);
+// Send the buffer to Discord and name it as a .png file
+form.append('file', imageBuffer, { filename: 'mlbbcard.png' });
 
-        res.json({ url: imgbbRes.data.data.url });
+// Send the image to the Webhook channel
+const discordRes = await axios.post("https://discord.com/api/webhooks/1550654446822887555/MDXDHa2_fEzkXN9SGA5iffb8Xt30D0Q_6iRvpA5y2BJBM_TK4xv2r4YlwmqNbx4i7aps?wait=true", form, {
+    headers: form.getHeaders()
+});
+
+// Grab the native Discord CDN link and send it back to BotGhost
+res.json({ url: discordRes.data.attachments[0].url });
 
     } catch (error) {
         console.error(error);
