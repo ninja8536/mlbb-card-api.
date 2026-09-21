@@ -27,8 +27,8 @@ app.post('/image', async (req, res) => {
         // Send the buffer to Discord and name it as a .png file
         form.append('file', imageBuffer, { filename: 'mlbbcard.png' });
 
-        // Send the image to the Webhook channel
-        const discordRes = await axios.post("https://discord.com/api/webhooks/1550654446822887555/MDXDHa2_fEzkXN9SGA5iffb8Xt30D0Q_6iRvpA5y2BJBM_TK4xv2r4YlwmqNbx4i7aps?wait=true", form, {
+        // Send the image to the Webhook channel (URL is stored in Render's Environment tab)
+        const discordRes = await axios.post(process.env.DISCORD_WEBHOOK_URL + "?wait=true", form, {
             headers: form.getHeaders()
         });
 
