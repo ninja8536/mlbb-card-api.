@@ -5,7 +5,7 @@ const FormData = require('form-data');
 
 const app = express();
 app.use(express.json());
-
+app.get('/health', (req, res) => res.send('ok'));
 app.post('/image', async (req, res) => {
     try {
         const { html } = req.body;
